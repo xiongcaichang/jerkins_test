@@ -52,7 +52,7 @@ if __name__ == '__main__':
 
     app_url =  getUrlFromStr(cmdrs_str)
 
-    if send_mail(mailto_list,"测试app下载地址 打包时间:"+time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())),{`<h3><a href=${app_url}>${app_url}</h3>`}):  
+    if send_mail(mailto_list,"测试app下载地址 打包时间:"+time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())),"<h3><a href="+app_url+">${app_url}</h3>"):  
         print "发送成功"  
     else:  
         print "发送失败"
