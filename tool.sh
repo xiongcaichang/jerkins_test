@@ -27,9 +27,9 @@ cmdrs_str = cmdrs.read()
 
 def getUrlFromStr(content):
     regex = re.compile(r"http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+", re.IGNORECASE)
-    urls = regex.findall(fobj)
+    urls = regex.findall(content)
     print urls
-    return urls
+    return urls[0]
 
 
   
