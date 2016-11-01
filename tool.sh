@@ -20,12 +20,12 @@ workspace =sys.argv[1]
 
 command_upload_to_fir = "fir p ${workspace}/build/jekins_test.ipa -T 3b501039782b9931cb4de6c4a0f82ce9"
 
-command_upload_to_fir_RS = os.popen(command_upload_to_fir)
+cmdrs = os.popen(command_upload_to_fir)
 
-cmdrs_str = command_upload_to_fir_RS.read()
+cmdrs_str = cmdrs.read()
 
 def send_mail(to_list,sub,content):  #to_list：收件人；sub：主题；content：邮件内容
-me = "bear"+"<"+mail_user+"@"+mail_postfix+">"   #这里的hello可以任意设置，收到信后，将按照设置显示
+me="hello"+"<"+mail_user+"@"+mail_postfix+">"   #这里的hello可以任意设置，收到信后，将按照设置显示
 msg = MIMEText(content,_subtype='html',_charset='utf-8')    #创建一个实例，这里设置为html格式邮件
 msg['Subject'] = sub    #设置主题
 msg['From'] = me
@@ -45,16 +45,17 @@ return False
 
 if __name__ == '__main__':
 
-# patt = re.compile(r'[a-zA-z]+://[^\s]*',re.I|re.X)
+print '-----------------------------------'
+print cmdrs_str
+print '-----------------------------------'
 
-# # print command_upload_to_fir_RS.read()+'--------'
+patt = re.compile(r'[a-zA-z]+://[^\s]*',re.I|re.X)
 
-# # app_url = patt.findall(cmdrs_str)[0]
+app_url = patt.findall(cmdrs_str)[0]
 
 
-print "${workspace}/build/jekins_test.ipa"
 
-if send_mail(mailto_list,"测试app下载地址 打包时间:"+time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())),cmdrs_str):
+if send_mail(mailto_list,"测试app下载地址 打包时间:"+time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())),"<h3>下载地址:</h3>${app_url}"):
 print "发送成功"
 else:
 print "发送失败"
