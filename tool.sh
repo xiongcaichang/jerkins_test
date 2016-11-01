@@ -15,7 +15,7 @@ mail_postfix="163.com"  #发件箱的后缀
 
 WORKSPACE =sys.argv[1]
 
-command_upload_to_fir = `fir p ${WORKSPACE}/build/jekins_test.ipa -T 3b501039782b9931cb4de6c4a0f82ce9`
+command_upload_to_fir = "fir p ${WORKSPACE}/build/jekins_test.ipa -T 3b501039782b9931cb4de6c4a0f82ce9"
 
 comRS = os.popen(command_upload_to_fir)
 
