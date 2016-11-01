@@ -38,7 +38,7 @@ def send_mail(to_list,sub,content):  #to_list：收件人；sub：主题；conte
         print str(e)  
         return False  
 if __name__ == '__main__':  
-    if send_mail(mailto_list,"成功打包","<h1>这是链接</h1>"):  
+    if send_mail(mailto_list,"成功打包",MAILCONTENT):  
         print "发送成功"  
     else:  
         print "发送失败"+ "<"+mail_user+"@"+mail_postfix+">"
