@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import smtplib  
+import sys
+
 from email.mime.text import MIMEText  
 mailto_list=["xiongcaichang@qq.com"] 
 mail_host="smtp.163.com"  #设置服务器
@@ -9,7 +11,7 @@ mail_user="17777785303"    #用户名
 mail_pass="qq123456"   #口令 
 mail_postfix="163.com"  #发件箱的后缀
 
-WORKSPACE =$1
+WORKSPACE =sys.argv[1]
 
 mail_content = `fir p ${WORKSPACE}/build/jekins_test.ipa -T 3b501039782b9931cb4de6c4a0f82ce9`
   
