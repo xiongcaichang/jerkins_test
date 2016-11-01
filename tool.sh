@@ -25,7 +25,7 @@ command_upload_to_fir_RS = os.popen(command_upload_to_fir)
 cmdrs_str = command_upload_to_fir_RS.read()
 
 def send_mail(to_list,sub,content):  #to_list：收件人；sub：主题；content：邮件内容
-me="bear"+"<"+mail_user+"@"+mail_postfix+">"   #这里的hello可以任意设置，收到信后，将按照设置显示
+me = "bear"+"<"+mail_user+"@"+mail_postfix+">"   #这里的hello可以任意设置，收到信后，将按照设置显示
 msg = MIMEText(content,_subtype='html',_charset='utf-8')    #创建一个实例，这里设置为html格式邮件
 msg['Subject'] = sub    #设置主题
 msg['From'] = me
