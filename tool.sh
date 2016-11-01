@@ -23,15 +23,6 @@ command_upload_to_fir = "fir p ${workspace}/build/jekins_test.ipa -T 3b501039782
 cmdrs = os.popen(command_upload_to_fir)
 
 cmdrs_str = cmdrs.read()
-
-
-def getUrlFromStr(content):
-    regex = re.compile(r"http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+", re.IGNORECASE)
-    urls = regex.findall(content)
-    print urls
-    return urls[0]
-
-
   
 def send_mail(to_list,sub,content):  #to_list：收件人；sub：主题；content：邮件内容
     me="hello"+"<"+mail_user+"@"+mail_postfix+">"   #这里的hello可以任意设置，收到信后，将按照设置显示
@@ -51,9 +42,13 @@ def send_mail(to_list,sub,content):  #to_list：收件人；sub：主题；conte
         return False  
 if __name__ == '__main__':
 
-    app_url =  getUrlFromStr(cmdrs_str)
+    patt = re.compile(r'[a-zA-z]+://[^\s]*',re.I|re.X)
 
-    if send_mail(mailto_list,"测试app下载地址 打包时间:"+time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())),"<h3><a href="+app_url+">${app_url}</h3>"):  
+    app_url = patt.findall(cmdrs_str)[0]
+
+
+
+    if send_mail(mailto_list,"测试app下载地址 打包时间:"+time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())),"<h3>下载地址:</h3>${app_url}"):  
         print "发送成功"  
     else:  
         print "发送失败"
